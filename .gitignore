@@ -1,4 +1,10 @@
+# Prevent tmp
 tmp
 
+# Prevent Credentials
 .env
+
+# Prevent IDE config
+.vscode
+.idea
 
