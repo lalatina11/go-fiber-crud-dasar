@@ -20,7 +20,7 @@ func GetAllTodos(ctx *fiber.Ctx) error {
 	return ctx.Status(200).JSON(lib.JsonResponse{Error: false, Data: todos, Message: "Success to Get All Todos!"})
 }
 
-func GetTodoById(ctx *fiber.Ctx) error {
+func GetTodoByID(ctx *fiber.Ctx) error {
 	id, err := strconv.Atoi(ctx.Params("id"))
 	if err != nil {
 		return ctx.Status(400).JSON(lib.JsonResponse{Error: true, Data: nil, Message: "Invalid id!"})
