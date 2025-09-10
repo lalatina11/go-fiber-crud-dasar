@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fiber-go/db"
-	"fiber-go/db/migrations"
-	"fiber-go/lib"
-	"fiber-go/routers"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/lalatina11/go-fiber-crud-dasar/db"
+	"github.com/lalatina11/go-fiber-crud-dasar/db/migrations"
+	"github.com/lalatina11/go-fiber-crud-dasar/lib"
+	"github.com/lalatina11/go-fiber-crud-dasar/routers"
 )
 
 func main() {
@@ -26,6 +26,5 @@ func main() {
 	})
 
 	routers.TodoRoute(app)
-
 	log.Fatal(app.Listen(":" + PORT))
 }

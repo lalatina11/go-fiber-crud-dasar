@@ -1,9 +1,10 @@
 package migrations
 
 import (
-	"fiber-go/db"
-	"fiber-go/db/models"
 	"fmt"
+
+	"github.com/lalatina11/go-fiber-crud-dasar/db"
+	"github.com/lalatina11/go-fiber-crud-dasar/db/models"
 )
 
 // migrate the todo table

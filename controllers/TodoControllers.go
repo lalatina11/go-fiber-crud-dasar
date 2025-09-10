@@ -1,17 +1,18 @@
 package controllers
 
 import (
-	db2 "fiber-go/db"
-	"fiber-go/db/models"
-	"fiber-go/lib"
 	"strconv"
 
+	db2 "github.com/lalatina11/go-fiber-crud-dasar/db"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/lalatina11/go-fiber-crud-dasar/db/models"
+	"github.com/lalatina11/go-fiber-crud-dasar/lib"
 )
 
 func GetAllTodos(ctx *fiber.Ctx) error {
 	var todos []models.Todo
-	var db = db2.DB()
+	db := db2.DB()
 	err := db.Find(&todos).Error
 	if err != nil {
 		return ctx.Status(400).JSON(lib.JsonResponse{Error: true, Data: nil, Message: err.Error()})
@@ -24,7 +25,7 @@ func GetTodoById(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.Status(400).JSON(lib.JsonResponse{Error: true, Data: nil, Message: "Invalid id!"})
 	}
-	var db = db2.DB()
+	db := db2.DB()
 	var todo *models.Todo
 	err = db.Find(&todo, id).Error
 	if err != nil {
@@ -41,7 +42,7 @@ func DeleteTodo(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.Status(400).JSON(lib.JsonResponse{Error: true, Data: nil, Message: "Invalid id!"})
 	}
-	var db = db2.DB()
+	db := db2.DB()
 	var todo *models.Todo
 	err = db.Find(&todo, id).Error
 	if err != nil {
@@ -67,7 +68,7 @@ func CreateTodo(ctx *fiber.Ctx) error {
 	if todo.Title == "" || todo.Description == "" {
 		return ctx.Status(400).JSON(lib.JsonResponse{Error: true, Data: nil, Message: "Please insert title and description!"})
 	}
-	var db = db2.DB()
+	db := db2.DB()
 	err := db.Where("title = ?", todo.Title).First(&todo).Error
 	if err == nil {
 		return ctx.Status(400).JSON(lib.JsonResponse{Error: true, Data: nil, Message: "Title must be unique!"})
@@ -86,7 +87,7 @@ func UpdateTodo(ctx *fiber.Ctx) error {
 		return ctx.Status(400).JSON(lib.JsonResponse{Error: true, Data: nil, Message: "Invalid id!"})
 	}
 	var updatedTodo models.Todo
-	var db = db2.DB()
+	db := db2.DB()
 	if err = ctx.BodyParser(&updatedTodo); err != nil {
 		return ctx.Status(400).JSON(lib.JsonResponse{Error: true, Data: nil, Message: err.Error()})
 	}

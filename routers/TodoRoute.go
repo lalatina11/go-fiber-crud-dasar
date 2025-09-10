@@ -1,9 +1,8 @@
 package routers
 
 import (
-	"fiber-go/controllers"
-
 	"github.com/gofiber/fiber/v2"
+	"github.com/lalatina11/go-fiber-crud-dasar/controllers"
 )
 
 func TodoRoute(route *fiber.App) {
